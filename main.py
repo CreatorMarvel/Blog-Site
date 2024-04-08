@@ -128,7 +128,7 @@ class Comment(Base):
         return f'({self.id}) ({self.text})'
 
 
-engine = create_engine('sqlite:///instance/posts.db')
+engine = create_engine(os.getenv('database'))
 Base.metadata.create_all(engine)
 
 Session = sessionmaker(bind=engine)
@@ -324,4 +324,4 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5002)
+    app.run(debug=False, port=5002)
