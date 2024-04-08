@@ -13,8 +13,15 @@ import smtplib
 from dotenv import load_dotenv
 import os
 
+
+def configure():
+    load_dotenv()
+
+
+configure()
+
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.getenv('app_key')
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
@@ -29,12 +36,6 @@ login_manager = LoginManager()
 login_manager.login_view = 'get_all_posts'
 login_manager.init_app(app)
 
-
-def configure():
-    load_dotenv()
-
-
-configure()
 
 current_user_id = int(os.getenv('current_user_id'))
 email_address = os.getenv('email_address')
