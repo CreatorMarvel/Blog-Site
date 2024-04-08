@@ -47,7 +47,7 @@ def admin_only(f):
     @wraps(f)
     def decorated_fun(*args, **kwargs):
         if current_user.is_authenticated:
-            if current_user.id != 100425888:
+            if current_user.id != 1:
                 return abort(403)
         else:
             return abort(403)
@@ -192,7 +192,7 @@ def login():
             return redirect(url_for('get_all_posts'))
         else:
             flash("Invalid email and/or password.", "danger")
-            return render_template("login.html")
+            return render_template("login.html", form=form)
     return render_template("login.html", form=form)
 
 
